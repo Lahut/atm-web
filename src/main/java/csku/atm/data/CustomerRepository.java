@@ -1,9 +1,9 @@
-package th.ac.ku.atm.data;
+package csku.atm.data;
 
+import csku.atm.model.Customer;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import th.ac.ku.atm.model.Customer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,14 +20,16 @@ public class CustomerRepository {
 
     public List<Customer> findAll() {
         String query = "SELECT * FROM customer";
-        List<Customer> customers = jdbcTemplate.query(query, new CustomerRowMapper());
+        List<Customer> customers =
+                jdbcTemplate.query(query,new CustomerRowMapper());
         return customers;
+
     }
 
     public Customer findById(int id) {
-        String query = "SELECT * FROM customer WHERE id = " + id;
-        Customer customer = jdbcTemplate.queryForObject(query, new CustomerRowMapper());
-        return customer;
+            String query = "SELECT * FROM customer WHERE id = " + id;
+            Customer customer = jdbcTemplate.queryForObject(query,new CustomerRowMapper());
+            return customer;
     }
 
     public void save(Customer customer) {
@@ -35,11 +37,13 @@ public class CustomerRepository {
         Object[] data = new Object[]
                 { customer.getId(), customer.getName(), customer.getPin() };
         jdbcTemplate.update(query, data);
+
     }
 
     public void deleteById(int id) {
         String query = "DELETE FROM customer WHERE id = " + id;
         jdbcTemplate.update(query);
+
     }
 
     class CustomerRowMapper implements RowMapper<Customer>{
@@ -50,9 +54,10 @@ public class CustomerRepository {
             String name = resultSet.getString("name");
             String pin = resultSet.getString("pin");
 
-            return new Customer(id, name, pin);
+
+            return new Customer(id,name,pin);
         }
     }
 
-}
 
+}
