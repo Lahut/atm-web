@@ -41,7 +41,7 @@ public class CustomerService {
     public Customer findCustomer(int id){
 
         try {
-            return repository.findById(id).get();
+            return repository.findById(id);
         } catch (NoSuchElementException e) {
             return null;
         }
