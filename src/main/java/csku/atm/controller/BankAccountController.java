@@ -23,7 +23,7 @@ public class BankAccountController {
 
     @GetMapping
     public String getBankAccountPage(Model model){
-        //model.addAttribute("allBankAccount",bankAccountService.getBankAccount());
+        model.addAttribute("bankaccounts",bankAccountService.getBankAccounts());
         return "bankaccount";
     }
 
@@ -38,4 +38,11 @@ public class BankAccountController {
 //
 //        return "redirect:bankaccount";
 //    }
+    @PostMapping
+    public String openAccount(@ModelAttribute BankAccount bankAccount, Model model) {
+        bankAccountService.openBankAccount(bankAccount);
+        model.addAttribute("bankaccounts",bankAccountService.getBankAccounts());
+        return "redirect:bankaccount";
+}
+
 }
