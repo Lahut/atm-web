@@ -54,4 +54,20 @@ public class BankAccountService {
         restTemplate.postForEntity(url,bankAccount, BankAccount.class);
 
     }
+
+    public void editBankAccount(BankAccount bankAccount){
+        String url = "http://localhost:8091/api/bankaccount/"+
+                bankAccount.getId();
+
+        restTemplate.put(url,bankAccount);
+    }
+
+    public BankAccount getBankAccount(int id){
+        String url = "http://localhost:8091/api/bankaccount/"+id;
+        ResponseEntity<BankAccount> response =
+                restTemplate.getForEntity(url,BankAccount.class);
+
+        return response.getBody();
+    }
+
 }
