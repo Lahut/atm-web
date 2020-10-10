@@ -50,7 +50,7 @@
             <td th:text="${account.balance}"></td>
             <td >
                 <a class="btn btn-warning"
-                        th:href="@{/bankaccount/edit/{id}(id=${account.id})}">Edit</a>
+                   th:href="@{/bankaccount/edit/{id}(id=${account.id})}">Edit</a>
                 <a class="btn btn-danger"
                         th:href="@{/bankaccount/delete/{id}(id=${account.id})}">Delete</a>
             </td>
